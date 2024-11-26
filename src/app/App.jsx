@@ -6,13 +6,16 @@ import { SearchResults } from 'components/SearchResults/SearchResults';
 import { Playlist } from 'components/Playlist/Playlist';
 import { Footer } from 'components/Footer/Footer';
 
+import { searchResultsSongs } from 'mocks/searchResultsSongs';
+import { playlistSongs } from 'mocks/playlistSongs';
+
 function App() {
   return (
     <>
       <Header />
       <SearchBar />
-      <SearchResults />
-      <Playlist />
+      <SearchResults songs={searchResultsSongs} />
+      <Playlist songs={playlistSongs} />
       <Footer />
     </>
   );

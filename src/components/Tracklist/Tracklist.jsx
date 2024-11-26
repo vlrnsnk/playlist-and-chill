@@ -1,14 +1,20 @@
 import { Track } from "components/Track/Track";
 
-const Tracklist = () => {
+const Tracklist = ({ songs = [] }) => {
   return (
-    <ul>
-      <li><Track title="Breaking the Habit" artist="Linkin Park" /></li>
-      <li><Track title="Numb" artist="Linkin Park" /></li>
-      <li><Track title="In the End" artist="Linkin Park" /></li>
-      <li><Track title="Crawling" artist="Linkin Park" /></li>
-      <li><Track title="Somewhere I Belong" artist="Linkin Park" /></li>
-    </ul>
+    <div>
+      {songs.length > 0 ? (
+        <ul>
+          {songs.map((song, index) => (
+            <li key={index}>
+              <Track title={song.title} artist={song.artist} />
+            </li>
+          ))}
+        </ul>
+       ) : (
+        <p>No songs</p>
+       )}
+    </div>
   );
 };
 

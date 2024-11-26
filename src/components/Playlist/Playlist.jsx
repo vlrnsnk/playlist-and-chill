@@ -1,11 +1,11 @@
 import { Button } from "components/Button/Button";
 import { Tracklist } from "components/Tracklist/Tracklist";
 
-const Playlist = () => {
+const Playlist = ({ songs }) => {
   return (
     <>
       <h2>Playlist</h2>
-      <Tracklist />
+      <Tracklist songs={songs} />
       <Button innerText="Save to Spotify" />
     </>
   );
