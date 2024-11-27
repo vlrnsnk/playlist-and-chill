@@ -4,10 +4,11 @@ const Tracklist = ({ songs = [] }) => {
   return (
     <div>
       {songs.length > 0 ? (
-        <ul>
+        <ul className="no-bullets">
           {songs.map((song, index) => (
             <li key={index}>
               <Track title={song.title} artist={song.artist} />
+              <hr className="has-background-info-85" />
             </li>
           ))}
         </ul>

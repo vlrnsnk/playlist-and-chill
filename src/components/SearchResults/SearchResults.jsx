@@ -2,10 +2,13 @@ import { Tracklist } from "components/Tracklist/Tracklist";
 
 const SearchResults = ({ songs }) => {
   return (
-    <>
-      <h2>Search Results</h2>
-      <Tracklist songs={songs} />
-    </>
+    <section className="section column">
+      <div className="content has-text-info-85 has-background-info-15 p-5 box is-rounded">
+        <h2 className="has-text-centered">Search Results</h2>
+        <hr className="has-background-info-25" />
+        <Tracklist songs={songs} />
+      </div>
+    </section>
   );
 };
 

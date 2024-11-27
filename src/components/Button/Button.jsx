@@ -1,6 +1,8 @@
-const Button = ({ innerText }) => {
+const Button = ({ innerText, addedClasses }) => {
   return (
-    <button className="button">{innerText}</button>
+    <button className={`button${addedClasses && ` ${addedClasses}`}`}>
+      {innerText}
+    </button>
   );
 };
 
