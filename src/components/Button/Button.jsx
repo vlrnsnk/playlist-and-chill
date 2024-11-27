@@ -1,6 +1,6 @@
 const Button = ({ innerText, addedClasses }) => {
   return (
-    <button className={`button${addedClasses && ` ${addedClasses}`}`}>
+    <button className={`button is-medium${addedClasses && ` ${addedClasses}`}`}>
       {innerText}
     </button>
   );

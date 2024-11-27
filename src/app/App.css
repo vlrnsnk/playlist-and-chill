@@ -2,3 +2,22 @@
   list-style-type: none !important;
   margin-left: 0 !important;
 }
+
+.search::placeholder {
+  color: #00364d !important;
+}
+
+.playlist-name {
+  border-width: 0 !important;
+  box-shadow: none !important;
+  padding-left: 0;
+  font-size: 28px !important;
+  color: #ffb70f !important;
+  font-weight: bold !important;
+}
+
+.playlist-name::placeholder {
+  color: #ffbf0f !important;
+  font-size: 28px;
+  font-weight: bold;
+}
