@@ -1,6 +1,8 @@
 import { Button } from "components/Button/Button";
 
 const SearchBar = ({
+  searchQuery,
+  setSearchQuery,
   handleSearchButtonClick,
   searchButtonText,
   isSearchButtonActive,
@@ -14,6 +16,8 @@ const SearchBar = ({
             type="text"
             name="search"
             placeholder="Enter a title, album, or artist"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
       </div>

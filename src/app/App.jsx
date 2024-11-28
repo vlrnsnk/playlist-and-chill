@@ -29,6 +29,7 @@ function App() {
   const [playlistName, setPlaylistName] = useState(defaultPlaylistName);
   const [spotifyAccessToken, setSpotifyAccessToken] = useState('');
 
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchButtonText, setSearchButtonText] = useState('Search');
   const [isSearchButtonActive, setIsSearchButtonActive] = useState(true);
 
@@ -36,6 +37,7 @@ function App() {
   const [isSavePlaylistButtonActive, setIsSavePlaylistButtonActive] = useState(true);
 
   useEffect(() => {
+    // TODO tracks.length !== 0 && isSavePlaylistButtonActive
     const hash = window.location.hash;
 
     if (hash) {
@@ -88,20 +90,23 @@ function App() {
 
       if (tokenFromLocalStorage) {
         setSpotifyAccessToken(tokenFromLocalStorage);
-      }
-    }
 
-    if (spotifyAccessToken) {
+        return true;
+      }
+    } else {
       return true;
     }
 
     console.log('Failed to retrieve Spotify Access Token');
+
     return false;
   };
 
 
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
+
+    console.log(searchQuery);
 
     setSearchButtonText('Searching...');
     setIsSearchButtonActive(false);
@@ -111,6 +116,8 @@ function App() {
     }
 
     console.log('Fetching tracks');
+
+    // axios.get()
 
     setSearchResultsTracks(searchResultsTracksMock);
 
@@ -167,6 +174,8 @@ function App() {
     <PageWrapper>
       <Header />
         <SearchBar
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
           handleSearchButtonClick={handleSearchButtonClick}
           searchButtonText={searchButtonText}
           isSearchButtonActive={isSearchButtonActive}
