@@ -7,7 +7,7 @@ const Tracklist = ({ songs = [], action }) => {
         <ul className="no-bullets">
           {songs.map((song, index) => (
             <li key={index}>
-              <Track title={song.title} artist={song.artist} action={action} />
+              <Track title={song.title} artist={song.artist} album={song.album} action={action} />
               <hr className="has-background-info-85" />
             </li>
           ))}
