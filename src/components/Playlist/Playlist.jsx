@@ -2,6 +2,8 @@ import { Button } from "components/Button/Button";
 import { Tracklist } from "components/Tracklist/Tracklist";
 
 const Playlist = ({
+  playlistName,
+  setPlaylistName,
   tracks,
   handleRemoveTrack,
   handleSavePlaylist,
@@ -13,7 +15,8 @@ const Playlist = ({
           className="input is-medium has-background-info-15 has-text-info-85 playlist-name pt-0"
           type="text"
           name="playlist-name"
-          placeholder="Name Your Playlist"
+          value={playlistName}
+          onChange={(e) => setPlaylistName(e.target.value)}
         />
         <hr className="has-background-info-25" />
         <Tracklist

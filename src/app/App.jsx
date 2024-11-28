@@ -14,6 +14,7 @@ import { useState } from 'react';
 function App() {
   const [searchResultsTracks, setSearchResultsTracks] = useState(searchResultsTracksMock);
   const [playlistTracks, setPlaylistTracks] = useState(playlistTracksMock);
+  const [playlistName, setPlaylistName] = useState('Name Your Playlist');
 
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
@@ -54,6 +55,8 @@ function App() {
             handleAddTrack={handleAddTrack}
           />
           <Playlist
+            playlistName={playlistName}
+            setPlaylistName={setPlaylistName}
             tracks={playlistTracks}
             handleRemoveTrack={handleRemoveTrack}
             handleSavePlaylist={handleSavePlaylist}
