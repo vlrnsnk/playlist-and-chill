@@ -21,6 +21,8 @@ function App() {
   const [playlistTracks, setPlaylistTracks] = useState(playlistTracksMock);
   const [playlistName, setPlaylistName] = useState(defaultPlaylistName);
   const [spotifyAccessToken, setSpotifyAccessToken] = useState('');
+  const [searchButtonText, setSearchButtonText] = useState('Search');
+  const [isSearchButtonActive, setIsSearchButtonActive] = useState(true);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -55,6 +57,9 @@ function App() {
   };
 
   const requestSpotifyAccessToken = () => {
+    setSearchButtonText('Requesting Spotify Access Token...');
+    setIsSearchButtonActive(false);
+
     const clientId = 'feb3091794be47a6a1f23f62b693c933';
     const redirectUri = 'http://localhost:3000';
     const scope = 'playlist-modify-public';
@@ -111,13 +116,21 @@ function App() {
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
 
+    setSearchButtonText('Searching ...');
+    setIsSearchButtonActive(false);
+
     if (!isSpotifyAccessTokenAvailable()) {
       return;
     }
 
-    console.log('Fetching songs');
+    console.log('Fetching tracks');
 
     setSearchResultsTracks(searchResultsTracksMock);
+
+    setTimeout(() => {
+      setSearchButtonText('Search');
+      setIsSearchButtonActive(true);
+    }, 1000);
   };
 
   const handleAddTrack = (track) => {
@@ -154,11 +167,16 @@ function App() {
   return (
     <PageWrapper>
       <Header />
-        <SearchBar handleSearchButtonClick={handleSearchButtonClick} />
+        <SearchBar
+          handleSearchButtonClick={handleSearchButtonClick}
+          searchButtonText={searchButtonText}
+          isSearchButtonActive={isSearchButtonActive}
+        />
         <div className="columns">
           <SearchResults
             tracks={searchResultsTracks}
             handleAddTrack={handleAddTrack}
+            searchButtonText={searchButtonText}
           />
           <Playlist
             playlistName={playlistName}

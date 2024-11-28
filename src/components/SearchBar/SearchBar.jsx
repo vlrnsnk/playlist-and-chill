@@ -1,10 +1,12 @@
 import { Button } from "components/Button/Button";
 
-const SearchBar = ({ handleSearchButtonClick }) => {
+const SearchBar = ({
+  handleSearchButtonClick,
+  searchButtonText,
+  isSearchButtonActive,
+}) => {
   return (
-    <form
-      className="section has-text-centered"
-    >
+    <form className="section has-text-centered">
       <div className="field columns">
         <div className="column is-half is-offset-one-quarter">
           <input
@@ -16,7 +18,8 @@ const SearchBar = ({ handleSearchButtonClick }) => {
         </div>
       </div>
       <Button
-        innerText="Search"
+        innerText={searchButtonText}
+        isActive={isSearchButtonActive}
         addedClasses="has-background-info-15 has-text-warning"
         handleClick={(e) => handleSearchButtonClick(e)}
       />

@@ -1,5 +1,6 @@
 const Button = ({
   innerText,
+  isActive,
   addedClasses,
   handleClick,
 }) => {
@@ -7,6 +8,7 @@ const Button = ({
     <button
       className={`button is-medium${addedClasses && ` ${addedClasses}`}`}
       onClick={handleClick}
+      disabled={!isActive}
       >
       {innerText}
     </button>
