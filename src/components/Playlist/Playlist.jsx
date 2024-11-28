@@ -10,6 +10,8 @@ const Playlist = ({
   handleRemoveTrack,
   handleSavePlaylist,
 }) => {
+  const isButtonActive = tracks.length !== 0 && isSavePlaylistButtonActive;
+
   return (
     <section className="section column">
       <div className="content has-text-info-85 has-background-info-15 box is-rounded p-5">
@@ -29,7 +31,7 @@ const Playlist = ({
         <div className="has-text-centered">
           <Button
             innerText={savePlaylistButtonText}
-            isActive={isSavePlaylistButtonActive}
+            isActive={isButtonActive}
             addedClasses="has-background-warning has-text-info-15"
             handleClick={handleSavePlaylist}
           />
