@@ -17,6 +17,7 @@ import { playlistTracksMock } from 'mocks/playlistTracks';
 import {
   requestSpotifyAccessToken,
   isSpotifyAccessTokenExpired,
+  // getSearchResultsTracks,
 } from 'utils/spotify';
 
 import { clearUrlParams } from 'utils/helpers';
@@ -77,6 +78,7 @@ function App() {
 
     if (token) {
       setSpotifyAccessToken(token);
+
       return token;
     }
 
@@ -117,7 +119,38 @@ function App() {
 
     console.log('Fetching tracks');
 
-    // axios.get()
+    const url = 'https://api.spotify.com/v1/search';
+
+    axios.get(url, {
+      params: {
+        q: searchQuery,
+        type: 'track',
+        limit: 20,
+      },
+      headers: {
+        Authorization: `Bearer ${getSpotifyAccessToken()}`,
+      },
+    })
+    .then(response => {
+      const foundTracks = response.data.tracks.items.map(
+        (item, index) => {
+          return {
+            id: index,
+            title: item.name,
+            artist: item.artists[0].name,
+            album: item.album.name,
+            uri: item.uri,
+          };
+        }
+      );
+
+      setSearchResultsTracks(foundTracks);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    setSearchQuery('');
 
     setSearchResultsTracks(searchResultsTracksMock);
 
