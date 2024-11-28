@@ -1,8 +1,8 @@
 import { Tracklist } from "components/Tracklist/Tracklist";
 
 const SearchResults = ({
-  songs,
-  handleAddSong,
+  tracks,
+  handleAddTrack,
 }) => {
   return (
     <section className="section column">
@@ -13,8 +13,8 @@ const SearchResults = ({
         <hr className="has-background-info-25" />
         <Tracklist
           action="add"
-          songs={songs}
-          handleActionButtonClick={handleAddSong}
+          tracks={tracks}
+          handleActionButtonClick={handleAddTrack}
         />
       </div>
     </section>

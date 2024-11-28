@@ -11,7 +11,7 @@ const SearchBar = ({ handleSearchButtonClick }) => {
             className="input is-medium has-background-info-85 has-text-info-15 search"
             type="text"
             name="search"
-            placeholder="Enter a Song, Album or Artist"
+            placeholder="Enter a title, album, or artist"
           />
         </div>
       </div>

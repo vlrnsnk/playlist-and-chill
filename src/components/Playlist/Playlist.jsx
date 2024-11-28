@@ -2,8 +2,8 @@ import { Button } from "components/Button/Button";
 import { Tracklist } from "components/Tracklist/Tracklist";
 
 const Playlist = ({
-  songs,
-  handleRemoveSong,
+  tracks,
+  handleRemoveTrack,
   handleSavePlaylist,
 }) => {
   return (
@@ -17,9 +17,9 @@ const Playlist = ({
         />
         <hr className="has-background-info-25" />
         <Tracklist
-          songs={songs}
+          tracks={tracks}
           action="remove"
-          handleActionButtonClick={handleRemoveSong}
+          handleActionButtonClick={handleRemoveTrack}
         />
         <div className="has-text-centered">
           <Button

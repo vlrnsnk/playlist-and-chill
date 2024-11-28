@@ -7,37 +7,41 @@ import { SearchResults } from 'components/SearchResults/SearchResults';
 import { Playlist } from 'components/Playlist/Playlist';
 import { Footer } from 'components/Footer/Footer';
 
-import { searchResultsSongsMock } from 'mocks/searchResultsSongs';
-import { playlistSongsMock } from 'mocks/playlistSongs';
+import { searchResultsTracksMock } from 'mocks/searchResultsTracks';
+import { playlistTracksMock } from 'mocks/playlistTracks';
 import { useState } from 'react';
 
 function App() {
-  const [searchResultsSongs, setSearchResultsSongs] = useState(searchResultsSongsMock);
-  const [playlistSongs, setPlaylistSongs] = useState(playlistSongsMock);
+  const [searchResultsTracks, setSearchResultsTracks] = useState(searchResultsTracksMock);
+  const [playlistTracks, setPlaylistTracks] = useState(playlistTracksMock);
 
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
-    console.log('fetching songs');
+
+    console.log('Fetching songs');
+
+    setSearchResultsTracks(searchResultsTracksMock);
   };
 
-  const handleAddSong = (track) => {
+  const handleAddTrack = (track) => {
     const { id } = track;
-    const isTrackAlreadyInPlaylist = playlistSongs.some(song => song.id === id);
+    const isTrackAlreadyInPlaylist = playlistTracks.some(track => track.id === id);
 
     if (!isTrackAlreadyInPlaylist) {
-      setPlaylistSongs([...playlistSongs, track]);
-      console.log(`adding song with id = ${id}`);
+      console.log(`Adding track with id = ${id}`);
+
+      setPlaylistTracks([...playlistTracks, track]);
     }
   };
 
-  const handleRemoveSong = ({ id }) => {
-    console.log(`removing song with id = ${id}`);
+  const handleRemoveTrack = ({ id }) => {
+    console.log(`Removing song with id = ${id}`);
 
-    setPlaylistSongs(playlistSongs.filter(song => song.id !== id));
+    setPlaylistTracks(playlistTracks.filter(track => track.id !== id));
   };
 
   const handleSavePlaylist = () => {
-    console.log('saving playlist');
+    console.log('Saving playlist');
   };
 
   return (
@@ -46,12 +50,12 @@ function App() {
         <SearchBar handleSearchButtonClick={handleSearchButtonClick} />
         <div className="columns">
           <SearchResults
-            songs={searchResultsSongs}
-            handleAddSong={handleAddSong}
+            tracks={searchResultsTracks}
+            handleAddTrack={handleAddTrack}
           />
           <Playlist
-            songs={playlistSongs}
-            handleRemoveSong={handleRemoveSong}
+            tracks={playlistTracks}
+            handleRemoveTrack={handleRemoveTrack}
             handleSavePlaylist={handleSavePlaylist}
           />
         </div>

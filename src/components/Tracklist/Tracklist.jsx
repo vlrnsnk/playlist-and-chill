@@ -1,18 +1,18 @@
 import { Track } from "components/Track/Track";
 
 const Tracklist = ({
-  songs = [],
+  tracks = [],
   action,
   handleActionButtonClick,
 }) => {
   return (
     <div>
-      {songs.length > 0 ? (
+      {tracks.length > 0 ? (
         <ul className="no-bullets">
-          {songs.map((song, index) => (
+          {tracks.map((track, index) => (
             <li key={index}>
               <Track
-                track={song}
+                track={track}
                 action={action}
                 handleActionButtonClick={handleActionButtonClick}
               />
@@ -21,7 +21,7 @@ const Tracklist = ({
           ))}
         </ul>
        ) : (
-        <p>No songs</p>
+        <p>No tracks</p>
        )}
     </div>
   );

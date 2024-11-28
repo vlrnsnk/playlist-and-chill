@@ -1,4 +1,4 @@
-const searchResultsSongsMock = [
+const searchResultsTracksMock = [
   {
     id: 101,
     title: "Breaking the Habit",
@@ -31,4 +31,4 @@ const searchResultsSongsMock = [
   },
 ];
 
-export { searchResultsSongsMock };
+export { searchResultsTracksMock };

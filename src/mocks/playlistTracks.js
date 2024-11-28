@@ -1,4 +1,4 @@
-const playlistSongsMock = [
+const playlistTracksMock = [
   {
     id: 1,
     title: "Faint",
@@ -19,4 +19,4 @@ const playlistSongsMock = [
   },
 ];
 
-export { playlistSongsMock };
+export { playlistTracksMock };
