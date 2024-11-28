@@ -23,9 +23,5 @@ export const requestSpotifyAccessToken = () => {
 export const isSpotifyAccessTokenExpired = () => {
   const expirationDate = localStorage.getItem('spotifyAccessTokenExpirationDate');
 
-  if (!expirationDate) {
-    return true;
-  }
-
-  return new Date().getTime() > parseInt(expirationDate, 10);
+  return !expirationDate || new Date().getTime() > parseInt(expirationDate, 10);
 };

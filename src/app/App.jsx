@@ -74,48 +74,49 @@ function App() {
       return null;
     }
 
-    const token = localStorage.getItem('spotifyAccessToken');
+    if (spotifyAccessToken) {
+      return spotifyAccessToken;
+    }
 
-    if (token) {
-      setSpotifyAccessToken(token);
+    const tokenFromLocalStorage = localStorage.getItem('spotifyAccessToken');
 
-      return token;
+    if (tokenFromLocalStorage) {
+      setSpotifyAccessToken(tokenFromLocalStorage);
+
+      return tokenFromLocalStorage;
     }
 
     return null;
   };
 
-  const isSpotifyAccessTokenAvailable = () => {
-    if (!spotifyAccessToken) {
-      const tokenFromLocalStorage = getSpotifyAccessToken();
-      console.log(`token from storage is ${tokenFromLocalStorage}`);
+  // const isSpotifyAccessTokenAvailable = () => {
+  //   if (!spotifyAccessToken) {
+  //     const tokenFromLocalStorage = getSpotifyAccessToken();
+  //     console.log(`token from storage is ${tokenFromLocalStorage}`);
 
-      if (tokenFromLocalStorage) {
-        setSpotifyAccessToken(tokenFromLocalStorage);
+  //     if (tokenFromLocalStorage) {
+  //       setSpotifyAccessToken(tokenFromLocalStorage);
 
-        return true;
-      }
-    } else {
-      return true;
-    }
+  //       return true;
+  //     }
+  //   } else {
+  //     return true;
+  //   }
 
-    console.log('Failed to retrieve Spotify Access Token');
+  //   console.log('Failed to retrieve Spotify Access Token');
 
-    return false;
-  };
+  //   return false;
+  // };
 
 
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
 
     console.log(searchQuery);
+    const spotifyAccessToken = getSpotifyAccessToken();
 
     setSearchButtonText('Searching...');
     setIsSearchButtonActive(false);
-
-    if (!isSpotifyAccessTokenAvailable()) {
-      return;
-    }
 
     console.log('Fetching tracks');
 
@@ -128,7 +129,7 @@ function App() {
         limit: 20,
       },
       headers: {
-        Authorization: `Bearer ${getSpotifyAccessToken()}`,
+        Authorization: `Bearer ${spotifyAccessToken}`,
       },
     })
     .then(response => {
@@ -178,16 +179,16 @@ function App() {
   };
 
   const handleSavePlaylist = () => {
-    console.log(localStorage.getItem('spotifyAccessToken'));
-    console.log(spotifyAccessToken);
-
+    const spotifyAccessToken = getSpotifyAccessToken();
+    
     setIsSavePlaylistButtonActive(false);
     setSavePlaylistButtonText('Saving playlist...');
 
-    if (!isSpotifyAccessTokenAvailable()) {
+    if (!spotifyAccessToken) {
       console.log('Cannot save playlist - Spotify Access Token is missing');
       setIsSavePlaylistButtonActive(true);
       setSavePlaylistButtonText('Save to Spotify');
+
       return;
     }
 
