@@ -9,12 +9,10 @@ const Tracklist = ({
     <div>
       {songs.length > 0 ? (
         <ul className="no-bullets">
-          {songs.map(({ title, artist, album }, index) => (
+          {songs.map((song, index) => (
             <li key={index}>
               <Track
-                title={title}
-                artist={artist}
-                album={album}
+                song={song}
                 action={action}
                 handleActionButtonClick={handleActionButtonClick}
               />

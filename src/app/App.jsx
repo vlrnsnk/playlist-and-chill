@@ -20,12 +20,21 @@ function App() {
     console.log('fetching songs');
   };
 
-  const handleAddSong = () => {
-    console.log('adding song');
+  const handleAddSong = (trackId) => {
+    const isTrackAlreadyInPlaylist = playlistSongs.some(song => song.id === trackId);
+
+    if (!isTrackAlreadyInPlaylist) {
+      const trackToAdd = searchResultsSongs.find(track => track.id === trackId);
+      setPlaylistSongs([...playlistSongs, trackToAdd]);
+    }
+
+    console.log(`adding song with id = ${trackId}`);
   };
 
-  const handleRemoveSong = () => {
-    console.log('removing song');
+  const handleRemoveSong = (id) => {
+    console.log(`removing song with id = ${id}`);
+
+    setPlaylistSongs(playlistSongs.filter(song => song.id !== id));
   };
 
   const handleSavePlaylist = () => {
