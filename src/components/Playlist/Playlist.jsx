@@ -28,7 +28,7 @@ const Playlist = ({
           <Button
             innerText="Save to Spotify"
             addedClasses="has-background-warning has-text-info-15"
-            handleSavePlaylist={handleSavePlaylist}
+            handleClick={handleSavePlaylist}
           />
         </div>
       </div>

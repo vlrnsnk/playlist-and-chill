@@ -12,9 +12,11 @@ import { playlistTracksMock } from 'mocks/playlistTracks';
 import { useState } from 'react';
 
 function App() {
+  const defaultPlaylistName = 'Name Your Playlist';
+
   const [searchResultsTracks, setSearchResultsTracks] = useState(searchResultsTracksMock);
   const [playlistTracks, setPlaylistTracks] = useState(playlistTracksMock);
-  const [playlistName, setPlaylistName] = useState('Name Your Playlist');
+  const [playlistName, setPlaylistName] = useState(defaultPlaylistName);
 
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
@@ -42,6 +44,12 @@ function App() {
   };
 
   const handleSavePlaylist = () => {
+    const spotifyUris = playlistTracks.map(track => track.uri);
+    console.log(spotifyUris);
+
+    setPlaylistTracks([]);
+    setPlaylistName(defaultPlaylistName);
+
     console.log('Saving playlist');
   };
 
