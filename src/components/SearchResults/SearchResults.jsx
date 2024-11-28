@@ -12,8 +12,8 @@ const SearchResults = ({
         </h2>
         <hr className="has-background-info-25" />
         <Tracklist
-          songs={songs}
           action="add"
+          songs={songs}
           handleActionButtonClick={handleAddSong}
         />
       </div>

@@ -1,12 +1,12 @@
 const ActionButton = ({
   action,
+  track,
   handleActionButtonClick,
-  songId,
 }) => {
   return (
     <button
       className="button is-size-4 has-text-warning has-background-info-15"
-      onClick={() => handleActionButtonClick(songId)}
+      onClick={() => handleActionButtonClick(track)}
     >
       <span className="is-size-4 is-bold">
         {action === "add" ? "+" : "-"}

@@ -12,7 +12,7 @@ const Tracklist = ({
           {songs.map((song, index) => (
             <li key={index}>
               <Track
-                song={song}
+                track={song}
                 action={action}
                 handleActionButtonClick={handleActionButtonClick}
               />

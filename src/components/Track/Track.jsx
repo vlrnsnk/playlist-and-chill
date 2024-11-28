@@ -1,11 +1,11 @@
 import { ActionButton } from "components/ActionButton/ActionButton";
 
 const Track = ({
-  song,
+  track,
   action,
   handleActionButtonClick,
 }) => {
-  const { id, title, artist, album } = song;
+  const { title, artist, album } = track;
 
   return (
     <div className="columns is-mobile is-vcentered">
@@ -16,7 +16,7 @@ const Track = ({
         <div className="column is-narrow">
           <ActionButton
             action={action}
-            songId={id}
+            track={track}
             handleActionButtonClick={handleActionButtonClick}
           />
         </div>
