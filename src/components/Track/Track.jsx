@@ -1,6 +1,12 @@
 import { ActionButton } from "components/ActionButton/ActionButton";
 
-const Track = ({ title, artist, album, action }) => {
+const Track = ({
+  title,
+  artist,
+  album,
+  action,
+  handleActionButtonClick,
+}) => {
   return (
     <div className="columns is-mobile is-vcentered">
       <div className="column">
@@ -8,7 +14,10 @@ const Track = ({ title, artist, album, action }) => {
         <p>{artist} | {album}</p>
       </div>
         <div className="column is-narrow">
-          <ActionButton action={action} />
+          <ActionButton
+            action={action}
+            handleActionButtonClick={handleActionButtonClick}
+          />
         </div>
     </div>
   );

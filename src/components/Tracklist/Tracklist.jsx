@@ -2,7 +2,8 @@ import { Track } from "components/Track/Track";
 
 const Tracklist = ({
   songs = [],
-  action
+  action,
+  handleActionButtonClick,
 }) => {
   return (
     <div>
@@ -15,6 +16,7 @@ const Tracklist = ({
                 artist={artist}
                 album={album}
                 action={action}
+                handleActionButtonClick={handleActionButtonClick}
               />
               <hr className="has-background-info-85" />
             </li>

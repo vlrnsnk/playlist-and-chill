@@ -1,6 +1,13 @@
-const Button = ({ innerText, addedClasses }) => {
+const Button = ({
+  innerText,
+  addedClasses,
+  handleClick,
+}) => {
   return (
-    <button className={`button is-medium${addedClasses && ` ${addedClasses}`}`}>
+    <button
+      className={`button is-medium${addedClasses && ` ${addedClasses}`}`}
+      onClick={handleClick}
+      >
       {innerText}
     </button>
   );

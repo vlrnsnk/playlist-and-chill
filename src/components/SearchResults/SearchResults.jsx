@@ -1,6 +1,9 @@
 import { Tracklist } from "components/Tracklist/Tracklist";
 
-const SearchResults = ({ songs }) => {
+const SearchResults = ({
+  songs,
+  handleAddSong,
+}) => {
   return (
     <section className="section column">
       <div className="content has-text-info-85 has-background-info-15 p-5 box is-rounded">
@@ -11,6 +14,7 @@ const SearchResults = ({ songs }) => {
         <Tracklist
           songs={songs}
           action="add"
+          handleActionButtonClick={handleAddSong}
         />
       </div>
     </section>

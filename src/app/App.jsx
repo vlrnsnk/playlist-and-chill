@@ -15,13 +15,37 @@ function App() {
   const [searchResultsSongs, setSearchResultsSongs] = useState(searchResultsSongsMock);
   const [playlistSongs, setPlaylistSongs] = useState(playlistSongsMock);
 
+  const handleSearchButtonClick = (e) => {
+    e.preventDefault();
+    console.log('fetching songs');
+  };
+
+  const handleAddSong = () => {
+    console.log('adding song');
+  };
+
+  const handleRemoveSong = () => {
+    console.log('removing song');
+  };
+
+  const handleSavePlaylist = () => {
+    console.log('saving playlist');
+  };
+
   return (
     <PageWrapper>
       <Header />
-        <SearchBar />
+        <SearchBar handleSearchButtonClick={handleSearchButtonClick} />
         <div className="columns">
-          <SearchResults songs={searchResultsSongs} />
-          <Playlist songs={playlistSongs} />
+          <SearchResults
+            songs={searchResultsSongs}
+            handleAddSong={handleAddSong}
+          />
+          <Playlist
+            songs={playlistSongs}
+            handleRemoveSong={handleRemoveSong}
+            handleSavePlaylist={handleSavePlaylist}
+          />
         </div>
         <Footer />
     </PageWrapper>
