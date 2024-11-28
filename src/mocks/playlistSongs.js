@@ -1,4 +1,4 @@
-const playlistSongs = [
+const playlistSongsMock = [
   {
     title: "Faint",
     artist: "Linkin Park",
@@ -16,4 +16,4 @@ const playlistSongs = [
   },
 ];
 
-export { playlistSongs };
+export { playlistSongsMock };

@@ -7,10 +7,14 @@ import { SearchResults } from 'components/SearchResults/SearchResults';
 import { Playlist } from 'components/Playlist/Playlist';
 import { Footer } from 'components/Footer/Footer';
 
-import { searchResultsSongs } from 'mocks/searchResultsSongs';
-import { playlistSongs } from 'mocks/playlistSongs';
+import { searchResultsSongsMock } from 'mocks/searchResultsSongs';
+import { playlistSongsMock } from 'mocks/playlistSongs';
+import { useState } from 'react';
 
 function App() {
+  const [searchResultsSongs, setSearchResultsSongs] = useState(searchResultsSongsMock);
+  const [playlistSongs, setPlaylistSongs] = useState(playlistSongsMock);
+
   return (
     <PageWrapper>
       <Header />

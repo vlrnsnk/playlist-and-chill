@@ -1,4 +1,4 @@
-const searchResultsSongs = [
+const searchResultsSongsMock = [
   {
     title: "Breaking the Habit",
     artist: "Linkin Park",
@@ -26,4 +26,4 @@ const searchResultsSongs = [
   },
 ];
 
-export { searchResultsSongs };
+export { searchResultsSongsMock };
