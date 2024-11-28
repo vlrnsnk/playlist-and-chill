@@ -14,6 +14,13 @@ import { Footer } from 'components/Footer/Footer';
 import { searchResultsTracksMock } from 'mocks/searchResultsTracks';
 import { playlistTracksMock } from 'mocks/playlistTracks';
 
+import {
+  requestSpotifyAccessToken,
+  isSpotifyAccessTokenExpired,
+} from 'utils/spotify';
+
+import { clearUrlParams } from 'utils/helpers';
+
 function App() {
   const defaultPlaylistName = 'Name Your Playlist';
 
@@ -21,8 +28,12 @@ function App() {
   const [playlistTracks, setPlaylistTracks] = useState(playlistTracksMock);
   const [playlistName, setPlaylistName] = useState(defaultPlaylistName);
   const [spotifyAccessToken, setSpotifyAccessToken] = useState('');
+
   const [searchButtonText, setSearchButtonText] = useState('Search');
   const [isSearchButtonActive, setIsSearchButtonActive] = useState(true);
+
+  const [savePlaylistButtonText, setSavePlaylistButtonText] = useState('Save to Spotify');
+  const [isSavePlaylistButtonActive, setIsSavePlaylistButtonActive] = useState(true);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -51,57 +62,33 @@ function App() {
     }
   }, []);
 
-  const clearUrlParams = () => {
-    const newUrl = `${window.location.origin}${window.location.pathname}`;
-    window.history.replaceState({}, document.title, newUrl);
-  };
-
-  const requestSpotifyAccessToken = () => {
-    setSearchButtonText('Requesting Spotify Access Token...');
-    setIsSearchButtonActive(false);
-
-    const clientId = 'feb3091794be47a6a1f23f62b693c933';
-    const redirectUri = 'http://localhost:3000';
-    const scope = 'playlist-modify-public';
-    const state = Math.random().toString(36).substring(2, 2 + 16);
-
-    localStorage.setItem('spotifyState', state);
-
-    const url = `https://accounts.spotify.com/authorize?response_type=token&client_id=${
-      encodeURIComponent(clientId)
-    }&scope=${
-      encodeURIComponent(scope)
-    }&redirect_uri=${
-      encodeURIComponent(redirectUri)
-    }&state=${
-      encodeURIComponent(state)
-    }`;
-    console.log(url);
-
-    window.location.href = url;
-  };
-
-  const isSpotifyAccessTokenExpired = () => {
-    const expirationDate = localStorage.getItem('spotifyAccessTokenExpirationDate');
-
-    if (!expirationDate) {
-      return true;
-    }
-
-    return new Date().getTime() > parseInt(expirationDate, 10);
-  };
-
   const getSpotifyAccessToken = () => {
     if (isSpotifyAccessTokenExpired()) {
+      setSearchButtonText('Requesting Spotify Access Token...');
+      setIsSearchButtonActive(false);
       requestSpotifyAccessToken();
+
+      return null;
     }
 
-    return localStorage.getItem('spotifyAccessToken');
+    const token = localStorage.getItem('spotifyAccessToken');
+
+    if (token) {
+      setSpotifyAccessToken(token);
+      return token;
+    }
+
+    return null;
   };
 
   const isSpotifyAccessTokenAvailable = () => {
     if (!spotifyAccessToken) {
-      setSpotifyAccessToken(getSpotifyAccessToken());
+      const tokenFromLocalStorage = getSpotifyAccessToken();
+      console.log(`token from storage is ${tokenFromLocalStorage}`);
+
+      if (tokenFromLocalStorage) {
+        setSpotifyAccessToken(tokenFromLocalStorage);
+      }
     }
 
     if (spotifyAccessToken) {
@@ -109,14 +96,14 @@ function App() {
     }
 
     console.log('Failed to retrieve Spotify Access Token');
-
     return false;
   };
+
 
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
 
-    setSearchButtonText('Searching ...');
+    setSearchButtonText('Searching...');
     setIsSearchButtonActive(false);
 
     if (!isSpotifyAccessTokenAvailable()) {
@@ -151,17 +138,29 @@ function App() {
   };
 
   const handleSavePlaylist = () => {
+    console.log(localStorage.getItem('spotifyAccessToken'));
+    console.log(spotifyAccessToken);
+
+    setIsSavePlaylistButtonActive(false);
+    setSavePlaylistButtonText('Saving playlist...');
+
     if (!isSpotifyAccessTokenAvailable()) {
+      console.log('Cannot save playlist - Spotify Access Token is missing');
+      setIsSavePlaylistButtonActive(true);
+      setSavePlaylistButtonText('Save to Spotify');
       return;
     }
 
     const spotifyUris = playlistTracks.map(track => track.uri);
-    console.log(spotifyUris);
+    console.log('Saving playlist with URIs:', spotifyUris);
 
     setPlaylistTracks([]);
     setPlaylistName(defaultPlaylistName);
 
-    console.log('Saving playlist');
+    setTimeout(() => {
+      setIsSavePlaylistButtonActive(true);
+      setSavePlaylistButtonText('Save to Spotify');
+    }, 1000);
   };
 
   return (
@@ -181,6 +180,8 @@ function App() {
           <Playlist
             playlistName={playlistName}
             setPlaylistName={setPlaylistName}
+            savePlaylistButtonText={savePlaylistButtonText}
+            isSavePlaylistButtonActive={isSavePlaylistButtonActive}
             tracks={playlistTracks}
             handleRemoveTrack={handleRemoveTrack}
             handleSavePlaylist={handleSavePlaylist}

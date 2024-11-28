@@ -4,6 +4,8 @@ import { Tracklist } from "components/Tracklist/Tracklist";
 const Playlist = ({
   playlistName,
   setPlaylistName,
+  savePlaylistButtonText,
+  isSavePlaylistButtonActive,
   tracks,
   handleRemoveTrack,
   handleSavePlaylist,
@@ -26,7 +28,8 @@ const Playlist = ({
         />
         <div className="has-text-centered">
           <Button
-            innerText="Save to Spotify"
+            innerText={savePlaylistButtonText}
+            isActive={isSavePlaylistButtonActive}
             addedClasses="has-background-warning has-text-info-15"
             handleClick={handleSavePlaylist}
           />
