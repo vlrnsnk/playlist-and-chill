@@ -1,13 +1,13 @@
 import { Track } from "components/Track/Track";
 
-const Tracklist = ({ songs = [] }) => {
+const Tracklist = ({ songs = [], action }) => {
   return (
     <div>
       {songs.length > 0 ? (
         <ul className="no-bullets">
           {songs.map((song, index) => (
             <li key={index}>
-              <Track title={song.title} artist={song.artist} />
+              <Track title={song.title} artist={song.artist} action={action} />
               <hr className="has-background-info-85" />
             </li>
           ))}
