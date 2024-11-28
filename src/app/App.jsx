@@ -120,9 +120,7 @@ function App() {
 
     console.log('Fetching tracks');
 
-    const url = 'https://api.spotify.com/v1/search';
-
-    axios.get(url, {
+    axios.get('https://api.spotify.com/v1/search', {
       params: {
         q: searchQuery,
         type: 'track',
@@ -180,7 +178,7 @@ function App() {
 
   const handleSavePlaylist = () => {
     const spotifyAccessToken = getSpotifyAccessToken();
-    
+
     setIsSavePlaylistButtonActive(false);
     setSavePlaylistButtonText('Saving playlist...');
 
@@ -194,6 +192,74 @@ function App() {
 
     const spotifyUris = playlistTracks.map(track => track.uri);
     console.log('Saving playlist with URIs:', spotifyUris);
+
+    const baseUrl = 'https://api.spotify.com/v1';
+
+    axios.get(`${baseUrl}/me`, {
+      headers: {
+        Authorization: `Bearer ${spotifyAccessToken}`,
+      },
+    })
+    .then(response => {
+      const userId = response.data.id;
+      console.log(userId);
+
+
+      axios.post(`${baseUrl}/users/${userId}/playlists`, {
+        name: playlistName,
+        description: playlistName,
+        public: true,
+
+      }, {
+        headers: {
+          Authorization: `Bearer ${spotifyAccessToken}`,
+        },
+      })
+      .then(response => {
+        console.log(response.data);
+
+
+        const playlistId = response.data.id;
+        console.log(playlistId);
+
+
+        axios.post(
+          `${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`,
+          {
+            uris: spotifyUris,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${spotifyAccessToken}`,
+            },
+          },
+        )
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(`adding tracks error - ${error} `);
+        });
+
+
+
+
+      })
+      .catch(error => {
+        console.log(`creating playlist error - ${error}`);
+
+      });
+
+
+
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    /**
+     * To add tracks to the new playlist, you will need to make a POST request to the /v1/users/{user_id}/playlists/{playlist_id}/tracks endpoint. You can provide a list of track IDs in the request body to add them to the playlist.
+     */
 
     setPlaylistTracks([]);
     setPlaylistName(defaultPlaylistName);
