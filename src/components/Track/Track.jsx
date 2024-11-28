@@ -3,7 +3,7 @@ import { ActionButton } from "components/ActionButton/ActionButton";
 const Track = ({ title, artist, album, action }) => {
   return (
     <div className="columns is-mobile is-vcentered">
-      <div className="column is-">
+      <div className="column">
         <h3>{title}</h3>
         <p>{artist} | {album}</p>
       </div>
