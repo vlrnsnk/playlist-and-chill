@@ -12,6 +12,10 @@ describe('ActionButton', () => {
     uri: 'spotify:test:1'
   };
 
+  beforeEach(() => {
+    mockHandleActionButtonClick.mockClear();
+  });
+
   it('renders with a "+" when action is "add', () => {
     render(
       <ActionButton
