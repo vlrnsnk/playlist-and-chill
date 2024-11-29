@@ -18,6 +18,7 @@ import {
   requestSpotifyAccessToken,
   isSpotifyAccessTokenExpired,
   createAndPopulatePlaylist,
+  fetchSpotifyTracks,
 } from 'utils/spotify';
 
 import { clearUrlParams } from 'utils/helpers';
@@ -88,7 +89,7 @@ function App() {
     return null;
   };
 
-  const handleSearchButtonClick = (e) => {
+  const handleSearchButtonClick = async (e) => {
     e.preventDefault();
 
     console.log(searchQuery);
@@ -99,43 +100,17 @@ function App() {
 
     console.log('Fetching tracks');
 
-    axios.get('https://api.spotify.com/v1/search', {
-      params: {
-        q: searchQuery,
-        type: 'track',
-        limit: 20,
-      },
-      headers: {
-        Authorization: `Bearer ${spotifyAccessToken}`,
-      },
-    })
-    .then(response => {
-      const foundTracks = response.data.tracks.items.map(
-        (item, index) => {
-          return {
-            id: index,
-            title: item.name,
-            artist: item.artists[0].name,
-            album: item.album.name,
-            uri: item.uri,
-          };
-        }
-      );
-
+    try {
+      const foundTracks = await fetchSpotifyTracks(searchQuery, spotifyAccessToken);
       setSearchResultsTracks(foundTracks);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
-    setSearchQuery('');
-
-    setSearchResultsTracks(searchResultsTracksMock);
-
-    setTimeout(() => {
+    } catch (error) {
+      setSearchResultsTracks([]);
+      console.log(`Search failed: ${error.message}`);
+    } finally {
+      setSearchQuery('');
       setSearchButtonText('Search');
       setIsSearchButtonActive(true);
-    }, 1000);
+    }
   };
 
   const handleAddTrack = (track) => {

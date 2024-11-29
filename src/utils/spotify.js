@@ -101,3 +101,31 @@ export const createAndPopulatePlaylist = async (spotifyAccessToken, playlistName
     throw error;
   }
 };
+
+export const fetchSpotifyTracks = async (searchQuery, spotifyAccessToken) => {
+  try {
+    const authHeader = getAuthHeader(spotifyAccessToken);
+    const response = await axios.get(
+      `${baseUrl}/search`,
+      {
+        params: {
+          q: searchQuery,
+          type: 'track',
+          limit: 20,
+        },
+        headers: authHeader.headers,
+      },
+    );
+
+    return response.data.tracks.items.map((item, index) => ({
+      id: index,
+      title: item.name,
+      artist: item.artists[0].name,
+      album: item.album.name,
+      uri: item.uri,
+    }));
+  } catch (error) {
+    console.error(`Error fetching tracks from Spotify: ${error.message}`);
+    throw error;
+  }
+};
