@@ -17,7 +17,7 @@ import { playlistTracksMock } from 'mocks/playlistTracks';
 import {
   requestSpotifyAccessToken,
   isSpotifyAccessTokenExpired,
-  // getSearchResultsTracks,
+  createAndPopulatePlaylist,
 } from 'utils/spotify';
 
 import { clearUrlParams } from 'utils/helpers';
@@ -38,7 +38,6 @@ function App() {
   const [isSavePlaylistButtonActive, setIsSavePlaylistButtonActive] = useState(true);
 
   useEffect(() => {
-    // TODO tracks.length !== 0 && isSavePlaylistButtonActive
     const hash = window.location.hash;
 
     if (hash) {
@@ -88,26 +87,6 @@ function App() {
 
     return null;
   };
-
-  // const isSpotifyAccessTokenAvailable = () => {
-  //   if (!spotifyAccessToken) {
-  //     const tokenFromLocalStorage = getSpotifyAccessToken();
-  //     console.log(`token from storage is ${tokenFromLocalStorage}`);
-
-  //     if (tokenFromLocalStorage) {
-  //       setSpotifyAccessToken(tokenFromLocalStorage);
-
-  //       return true;
-  //     }
-  //   } else {
-  //     return true;
-  //   }
-
-  //   console.log('Failed to retrieve Spotify Access Token');
-
-  //   return false;
-  // };
-
 
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
@@ -176,7 +155,7 @@ function App() {
     setPlaylistTracks(playlistTracks.filter(track => track.id !== id));
   };
 
-  const handleSavePlaylist = () => {
+  const handleSavePlaylist = async () => {
     const spotifyAccessToken = getSpotifyAccessToken();
 
     setIsSavePlaylistButtonActive(false);
@@ -193,81 +172,17 @@ function App() {
     const spotifyUris = playlistTracks.map(track => track.uri);
     console.log('Saving playlist with URIs:', spotifyUris);
 
-    const baseUrl = 'https://api.spotify.com/v1';
-
-    axios.get(`${baseUrl}/me`, {
-      headers: {
-        Authorization: `Bearer ${spotifyAccessToken}`,
-      },
-    })
-    .then(response => {
-      const userId = response.data.id;
-      console.log(userId);
-
-
-      axios.post(`${baseUrl}/users/${userId}/playlists`, {
-        name: playlistName,
-        description: playlistName,
-        public: true,
-
-      }, {
-        headers: {
-          Authorization: `Bearer ${spotifyAccessToken}`,
-        },
-      })
-      .then(response => {
-        console.log(response.data);
-
-
-        const playlistId = response.data.id;
-        console.log(playlistId);
-
-
-        axios.post(
-          `${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`,
-          {
-            uris: spotifyUris,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${spotifyAccessToken}`,
-            },
-          },
-        )
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log(`adding tracks error - ${error} `);
-        });
-
-
-
-
-      })
-      .catch(error => {
-        console.log(`creating playlist error - ${error}`);
-
-      });
-
-
-
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
-    /**
-     * To add tracks to the new playlist, you will need to make a POST request to the /v1/users/{user_id}/playlists/{playlist_id}/tracks endpoint. You can provide a list of track IDs in the request body to add them to the playlist.
-     */
-
-    setPlaylistTracks([]);
-    setPlaylistName(defaultPlaylistName);
-
-    setTimeout(() => {
+    try {
+      const playlist = await createAndPopulatePlaylist(spotifyAccessToken, playlistName, spotifyUris);
+      console.log(`Playlist saved: ${playlist}`);
+    } catch (error) {
+      console.log(`Error saving playlist: ${error.message}`);
+    } finally {
       setIsSavePlaylistButtonActive(true);
       setSavePlaylistButtonText('Save to Spotify');
-    }, 1000);
+      setPlaylistTracks([]);
+      setPlaylistName(defaultPlaylistName);
+    }
   };
 
   return (
