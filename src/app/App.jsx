@@ -149,9 +149,13 @@ function App() {
       console.log(`Error saving playlist: ${error.message}`);
     } finally {
       setIsSavePlaylistButtonActive(true);
-      setSavePlaylistButtonText('Save to Spotify');
+      setSavePlaylistButtonText('Playlist saved!');
       setPlaylistTracks([]);
       setPlaylistName(defaultPlaylistName);
+
+      setTimeout(() => {
+        setSavePlaylistButtonText('Save to Spotify');
+      }, 2000);
     }
   };
 
