@@ -8,7 +8,7 @@ const SearchBar = ({
   isSearchButtonActive,
 }) => {
   return (
-    <form className="section has-text-centered">
+    <form className="section has-text-centered" onSubmit={(e) => { e.preventDefault(); }} >
       <div className="field columns">
         <div className="column is-half is-offset-one-quarter">
           <input
