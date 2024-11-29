@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import axios from 'axios';
-
 import './App.css';
 
 import { PageWrapper } from 'layout/PageWrapper/PageWrapper';
@@ -10,9 +8,6 @@ import { SearchBar } from 'components/SearchBar/SearchBar';
 import { SearchResults } from 'components/SearchResults/SearchResults';
 import { Playlist } from 'components/Playlist/Playlist';
 import { Footer } from 'components/Footer/Footer';
-
-import { searchResultsTracksMock } from 'mocks/searchResultsTracks';
-import { playlistTracksMock } from 'mocks/playlistTracks';
 
 import {
   requestSpotifyAccessToken,
@@ -26,8 +21,8 @@ import { clearUrlParams } from 'utils/helpers';
 function App() {
   const defaultPlaylistName = 'Name Your Playlist';
 
-  const [searchResultsTracks, setSearchResultsTracks] = useState(searchResultsTracksMock);
-  const [playlistTracks, setPlaylistTracks] = useState(playlistTracksMock);
+  const [searchResultsTracks, setSearchResultsTracks] = useState([]);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
   const [playlistName, setPlaylistName] = useState(defaultPlaylistName);
   const [spotifyAccessToken, setSpotifyAccessToken] = useState('');
 
