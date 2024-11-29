@@ -32,7 +32,7 @@ const Playlist = ({
           <Button
             innerText={savePlaylistButtonText}
             isActive={isButtonActive}
-            addedClasses="has-background-warning has-text-info-15"
+            addedClasses="has-background-warning has-text-info-15 mt-5"
             handleClick={handleSavePlaylist}
           />
         </div>
