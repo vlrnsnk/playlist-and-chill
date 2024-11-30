@@ -116,13 +116,16 @@ function App() {
       console.log(`Adding track with id = ${id}`);
 
       setPlaylistTracks([...playlistTracks, track]);
+      setSearchResultsTracks(searchResultsTracks.filter(track => track.id !== id));
     }
   };
 
-  const handleRemoveTrack = ({ id }) => {
-    console.log(`Removing song with id = ${id}`);
+  const handleRemoveTrack = (track) => {
+    const trackId = track.id;
+    console.log(`Removing song with id = ${trackId}`);
 
-    setPlaylistTracks(playlistTracks.filter(track => track.id !== id));
+    setPlaylistTracks(playlistTracks.filter(track => track.id !== trackId));
+    setSearchResultsTracks([...searchResultsTracks, track]);
   };
 
   const handleSavePlaylist = async () => {
