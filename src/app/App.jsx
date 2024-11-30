@@ -162,30 +162,30 @@ function App() {
   return (
     <PageWrapper>
       <Header />
-        <SearchBar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          handleSearchButtonClick={handleSearchButtonClick}
+      <SearchBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleSearchButtonClick={handleSearchButtonClick}
+        searchButtonText={searchButtonText}
+        isSearchButtonActive={isSearchButtonActive}
+      />
+      <div className="columns">
+        <SearchResults
+          tracks={searchResultsTracks}
+          handleAddTrack={handleAddTrack}
           searchButtonText={searchButtonText}
-          isSearchButtonActive={isSearchButtonActive}
         />
-        <div className="columns">
-          <SearchResults
-            tracks={searchResultsTracks}
-            handleAddTrack={handleAddTrack}
-            searchButtonText={searchButtonText}
-          />
-          <Playlist
-            playlistName={playlistName}
-            setPlaylistName={setPlaylistName}
-            savePlaylistButtonText={savePlaylistButtonText}
-            isSavePlaylistButtonActive={isSavePlaylistButtonActive}
-            tracks={playlistTracks}
-            handleRemoveTrack={handleRemoveTrack}
-            handleSavePlaylist={handleSavePlaylist}
-          />
-        </div>
-        <Footer />
+        <Playlist
+          playlistName={playlistName}
+          setPlaylistName={setPlaylistName}
+          savePlaylistButtonText={savePlaylistButtonText}
+          isSavePlaylistButtonActive={isSavePlaylistButtonActive}
+          tracks={playlistTracks}
+          handleRemoveTrack={handleRemoveTrack}
+          handleSavePlaylist={handleSavePlaylist}
+        />
+      </div>
+      <Footer />
     </PageWrapper>
   );
 }
