@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# Playlist & Chill
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Playlist & Chill is a React web application that allows users to search for songs, create a custom playlist, and save it to their Spotify account. The app integrates with the Spotify API to fetch song data, build custom playlists, and export them directly to a user's Spotify profile.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Demo](#demo)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Customization](#customization)
+- [Running Tests](#running-tests)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Search Songs**: Users can search for songs by song title, artist, genre, or album.
+- **Song Information**: Displays information about each song, including title, artist, album, and album artwork.
+- **Create Playlist**: Allows users to create a custom playlist by adding selected songs.
+- **Export Playlist**: Users can export their custom playlists to their personal Spotify account.
+- **Responsive Design**: Fully responsive UI for an optimal experience on all devices.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Demo
 
-### `npm test`
+Check out the live demo deployed to [Netlify](https://your-app-name.netlify.app).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- **React**: Bootstrapped with Create React App for fast and easy setup.
+- **Bulma**: A modern CSS framework used for responsive styling and UI components.
+- **Spotify API**: Integrated to search for songs and manage playlists on Spotify.
+- **Axios**: Used for making HTTP requests to the Spotify API.
+- **Jest**: Testing framework used to write and run unit tests for the app.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Follow these steps to set up the project locally:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/vlrnsnk/playlist-and-chill.git
+   cd playlist-and-chill
+   ```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+3. **Start the development server**:
+   ```bash
+   npm start
+   ```
+   This will start the app and open it in your default browser at `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Build the project**:
+   ```bash
+   npm run build
+   ```
+   This will create an optimized production build in the `build` directory.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Search for songs**: Use the search bar to look for songs by title, artist, or album.
+- **Add to Playlist**: Select the songs you want to add to your custom playlist.
+- **Save to Spotify**: Once your playlist is complete, export it to your Spotify account.
+- **Responsive Design**: The app automatically adjusts its layout based on the screen size.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Customization
 
-## Learn More
+- **Bulma**: Modify the look and feel of the app by adjusting the `bulma` classes used in the components. You can find the Bulma documentation [here](https://bulma.io/).
+- **React Components**: Customize the components as needed. Each component is located in the `src/components` folder.
+- **Spotify API**: If you want to use a different API or add more features, update the `spotify.js` utility functions.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Running Tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To run the tests using Jest, follow these steps:
 
-### Code Splitting
+1. **Run tests**:
+   ```bash
+   npm test
+   ```
+   This will run all the unit tests in the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. **Watch test changes**:
+   ```bash
+   npm run test:watch
+   ```
+   This will keep Jest running and automatically rerun tests when files are modified.
 
-### Analyzing the Bundle Size
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Contributions are welcome! If you have suggestions or improvements, feel free to fork the repository and submit a pull request.
 
-### Making a Progressive Web App
+1. **Fork the repository**.
+2. **Create a new branch**: `git checkout -b feature/your-feature-name`
+3. **Commit your changes**: `git commit -am 'Add your changes'`
+4. **Push to your fork**: `git push origin feature/your-feature-name`
+5. **Open a pull request** to the main repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Acknowledgements
 
-### Deployment
+- [Create React App](https://reactjs.org/docs/create-a-new-react-app.html)
+- [Bulma CSS Framework](https://bulma.io/)
+- [Spotify API](https://developer.spotify.com/documentation/web-api/)
+- [Axios](https://axios-http.com/)
+- [Jest](https://jestjs.io/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Contact
 
-### `npm run build` fails to minify
+Feel free to reach out to me with any questions or for collaborations.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Email**: [vlrnsnk\@proton.me](mailto:vlrnsnk@proton.me?subject=PlaylistAndChill)
+- **LinkedIn**: [https://linkedin.com/in/valeriy-a-a23833310/](https://linkedin.com/in/vlrnsnk/)
+- **GitHub**: [https://github.com/vlrnsnk](https://github.com/vlrnsnk/)
