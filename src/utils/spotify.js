@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const requestSpotifyAccessToken = () => {
   const clientId = 'feb3091794be47a6a1f23f62b693c933';
-  const redirectUri = 'http://localhost:3000';
+  const redirectUri = 'https://playlist-and-chill.netlify.app';
   const scope = 'playlist-modify-public';
   const state = Math.random().toString(36).substring(2, 2 + 16);
 
