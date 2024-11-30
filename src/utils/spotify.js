@@ -28,7 +28,7 @@ export const isSpotifyAccessTokenExpired = () => {
   return !expirationDate || new Date().getTime() > parseInt(expirationDate, 10);
 };
 
-const getAuthHeader = (spotifyAccessToken) => {
+export const getAuthHeader = (spotifyAccessToken) => {
   return {
     headers: {
       Authorization: `Bearer ${spotifyAccessToken}`,
@@ -38,7 +38,7 @@ const getAuthHeader = (spotifyAccessToken) => {
 
 const baseUrl = 'https://api.spotify.com/v1';
 
-const getUserId = async (spotifyAccessToken) => {
+export const getUserId = async (spotifyAccessToken) => {
   try {
     const response = await axios.get(
       `${baseUrl}/me`,
@@ -51,7 +51,7 @@ const getUserId = async (spotifyAccessToken) => {
   }
 };
 
-const createPlaylist = async (userId, playlistName, spotifyAccessToken) => {
+export const createPlaylist = async (userId, playlistName, spotifyAccessToken) => {
   try {
     const response = await axios.post(
       `${baseUrl}/users/${userId}/playlists`,
@@ -69,7 +69,7 @@ const createPlaylist = async (userId, playlistName, spotifyAccessToken) => {
   }
 };
 
-const addTracksToPlaylist = async (userId, playlistId, spotifyUris, spotifyAccessToken) => {
+export const addTracksToPlaylist = async (userId, playlistId, spotifyUris, spotifyAccessToken) => {
   try {
     const response = axios.post(
       `${baseUrl}/users/${userId}/playlists/${playlistId}/tracks`,
