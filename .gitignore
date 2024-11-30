@@ -27,3 +27,6 @@ yarn-error.log*
 /.idea
 
 !/**/.gitkeep
+
+# Local Netlify folder
+.netlify
