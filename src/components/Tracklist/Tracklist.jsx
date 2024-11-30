@@ -21,7 +21,7 @@ const Tracklist = ({
           ))}
         </ul>
        ) : (
-        <p>No tracks</p>
+        <p>No Tracks</p>
        )}
     </div>
   );
