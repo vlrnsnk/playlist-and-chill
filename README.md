@@ -26,7 +26,7 @@ Playlist & Chill is a React web application that allows users to search for song
 
 ## Demo
 
-Check out the live demo deployed to [Netlify](https://your-app-name.netlify.app).
+Check out the live demo deployed to [Netlify](https://playlist-and-chill.netlify.app).
 
 ## Technologies Used
 
