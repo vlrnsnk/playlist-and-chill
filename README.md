@@ -6,6 +6,7 @@ Playlist & Chill is a React web application that allows users to search for song
 
 - [Features](#features)
 - [Demo](#demo)
+- [Screenshot](#screenshot)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -27,6 +28,10 @@ Playlist & Chill is a React web application that allows users to search for song
 ## Demo
 
 Check out the live demo deployed to [Netlify](https://playlist-and-chill.netlify.app).
+
+## Screenshot
+
+![Playlist & Chill App](https://i.imgur.com/0mi7xWV.png)
 
 ## Technologies Used
 
@@ -118,5 +123,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 Feel free to reach out to me with any questions or for collaborations.
 
 - **Email**: [vlrnsnk\@proton.me](mailto:vlrnsnk@proton.me?subject=PlaylistAndChill)
-- **LinkedIn**: [https://linkedin.com/in/valeriy-a-a23833310/](https://linkedin.com/in/vlrnsnk/)
+- **LinkedIn**: [https://linkedin.com/in/vlrnsnk/](https://linkedin.com/in/vlrnsnk/)
 - **GitHub**: [https://github.com/vlrnsnk](https://github.com/vlrnsnk/)
